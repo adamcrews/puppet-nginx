@@ -1,7 +1,7 @@
 # Install nginx
 #
 class nginx(
-  $ensure = present,
+  $ensure         = present,
 ) {
   include nginx::config
   include homebrew
@@ -32,7 +32,7 @@ class nginx(
       }
 
       file { $nginx::config::configfile:
-        content => template('nginx/config/nginx/nginx.conf.erb'),
+        content => template("${caller_module_name}/config/nginx/nginx.conf.erb"),
         notify  => Service['dev.nginx']
       }
 
